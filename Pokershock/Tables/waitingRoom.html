@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+        <title>Waiting room</title>
+        <link rel="stylesheet" type="text/css" href="../CSS/waitingRoom.css">
+        <link id="themes" rel="stylesheet" type="text/css" href="../CSS/theme0.css">
+        <script type="text/javascript" src="../../JavaScript/waitingRoom.js"></script>
+        <script type="text/javascript" src="../../JavaScript/ajax.js"></script>
+    </head>
+
+   <body onload="roomUpdater()">
+       
+        <div id="themesWrapper">
+           <div>Lang Theme</div>
+           <img id="langImg" alt="Lang" src="../../Themes/theme1.png" onclick="langs()" />
+           <img id="themeImg" alt="Theme" src="../../Themes/theme0.png" onclick="themes()"/>
+        </div> 
+       
+       <div class="mainWrapper">
+            <div id="playersWrapper"></div>
+            <div class="menuWrapper">
+                 <h2 id="owner">Onwer</h2>
+                 <h3>Game creator will close after 30 minutes [ <span id="time"></span> ] minutes!</h3>
+                 <p>Money in bank:</p>
+                 <p id="bank"></p>
+                 <p>Transfer your money to game account</p>
+                 <input type="text" id="input"><br><br>
+                 <button onclick="playerIsReady()">Ready</button>
+                 <button onclick="deleteUser()">Exit</button>
+            </div>
+       </div>  
+    </body>
+</html>

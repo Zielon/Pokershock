@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+        <title>PokerShock</title>
+        <link rel="stylesheet" type="text/css" href="/CSS/main.css">
+        <script type="text/javascript" src="/JavaScript/ajax.js"></script>
+        <script type="text/javascript" src="/JavaScript/blowfish.js"></script>
+    </head>
+    
+    <body onload="isLogged()">
+        <h1>PokerShock.pl</h1>
+        <div class="wrapper">        
+            <form> 
+                Login
+                <input type="text" id="in1">
+                Password
+                <input type="Password" id="in2" onkeydown="chcekKey(event)">
+            </form>
+            <button onclick="logIn()">Login</button>
+            <button onclick="window.location='/signup.html'">Sing up</button>
+            <img alt="Poker" src="/Images/pokerindex.jpg"/>
+        </div>
+        <div id="footer"></div>
+        <script type="text/javascript">        
+            function chcekKey(e){       
+                if (e.keyCode == 13) {
+                    logIn();
+                }    
+            }
+
+            function logIn() {
+                var login = document.getElementById("in1").value;
+                var password = document.getElementById("in2").value;
+                var ajax = new AjaxRequests();
+
+                var ciphertext = encrypt("pokershock", password);
+                var params = "login=" + login + "&password=" + ciphertext + "&function=login";
+                ajax.sendRequest(params, checkResponse, "POST", "logger.php", false);
+
+                function checkResponse(res){
+                    var loginFlag = res.responseText;
+                    var tab = loginFlag.split(":");
+                    if(tab[0] === "TRUE"){
+                        sessionStorage.setItem("poker_Player", tab[1]);
+                        var data = new Date();
+                        data.setTime(data.getTime() + (3*24*60*60*1000));
+                        var expires = "expires="+data.toUTCString();
+                        document.cookie="username=" + tab[1] + " ;" + expires;
+                        document.cookie="loginTime=" + new Date() + " ;" + expires;
+                        window.location.href = "/MainMenu/menu.php";
+                    }else{
+                        document.getElementById("in1").value = "";
+                        document.getElementById("in2").value = "";
+                        alert("Wrong password or login !");
+                    }
+                };
+            }
+            
+            function getCookie(cookie) {
+                var name = cookie + "=";
+                var ca = document.cookie.split(';');
+                for(var i=0; i<ca.length; i++) {
+                    var c = ca[i];
+                    while (c.charAt(0)==' ') c = c.substring(1);
+                    if (c.indexOf(name) == 0) {
+                        return c.substring(name.length, c.length);
+                    }
+                }
+                return "";
+            }
+
+            function isLogged(){
+                var ajax = new AjaxRequests();
+                var params = "function=check";
+                ajax.sendRequest(params, checkResponse, "POST", "logger.php");
+
+                function checkResponse(res){
+                    var loginFlag = res.responseText;
+                     if(loginFlag === "True"){
+                        window.location.href = "/MainMenu/menu.php";
+                    }
+                };
+                var parts = document.cookie.split(";");    
+                document.getElementById("footer").innerHTML = "Last login: " + getCookie("loginTime") + " by " + getCookie("username");
+            }
+        </script>
+    </body>
+</html>

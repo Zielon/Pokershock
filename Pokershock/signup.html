@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>PokerShock</title>
+        <link rel="stylesheet" type="text/css" href="/CSS/main.css">
+        <script src="/JavaScript/ajax.js"></script>
+    </head>
+
+    <h1>PokerShock.pl</h1>
+
+    <body bgcolor="#000000">
+    <form> 
+        Username
+        <input type="text" id="in1" name="user">
+        Login
+        <input type="text" id="in2" name="login">
+        Enter password
+        <input type="Password" id="in3" name="pass1">
+        Reenter password
+        <input type="Password" id="in4" name="pass2">
+    </form>
+    <button onclick="register()">Register</button>
+    <img src="/Images/pokerindex.jpg">
+    </body>
+    <script> 
+        function register(){
+
+            var username = document.getElementById("in1").value;
+            var login = document.getElementById("in2").value;
+            var pass1 = document.getElementById("in3").value;  
+            var pass2 = document.getElementById("in4").value;   
+            
+            var flag = true;
+            
+            if(username.length === 0 || username.length > 10){
+                alert("Wrong Username empty or to long max 10 chars");
+                document.getElementById("in1").value = "";
+                flag = false;
+            }
+            
+            if(login.length === 0 || login.length > 6){
+                alert("Wrong Login empty or to long max 6 chars");
+                document.getElementById("in2").value = "";
+                flag = false;
+            }
+            
+            if(pass1 !== pass2 || pass1.length < 5){
+                alert("Passwords are not equal or too short min 5 chars");
+                document.getElementById("in3").value = "";
+                document.getElementById("in4").value = "";
+                flag = false;
+            }
+            
+            if(flag === true){
+                var ajax = new AjaxRequests();
+                var params = "login=" + login +"&user=" + username+ "&pass1=" + pass1 + "&pass2=" + pass2;
+                ajax.sendRequest(params, checkResponse, "POST", "registrator.php", false);
+
+                function checkResponse(res){
+
+                    var loginFlag = res.responseText;
+                    if(loginFlag === "True"){
+                        alert("User has been added !");
+                        window.location.href = "/index.html";
+                    }else{
+                       alert("This login is not available");
+                    }
+                    document.getElementById("in1").value = "";
+                    document.getElementById("in2").value = "";
+                    document.getElementById("in3").value = "";
+                    document.getElementById("in4").value = "";
+                };
+            }
+        }
+
+    </script>   
+</html>

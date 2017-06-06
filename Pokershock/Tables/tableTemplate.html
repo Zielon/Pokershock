@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Game table</title>
+        <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+        <link rel="stylesheet" type="text/css" href="../CSS/pokerTable.css">
+        <link id="themes" rel="stylesheet" type="text/css">
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <script src="../../JavaScript/tableHandlers.js"></script>
+        <script src="../../JavaScript/ajax.js"></script>
+    </head>
+
+    <script type = "text/javascript" >
+        history.pushState(null, null, 'GameTable.html');
+        window.addEventListener('popstate', 
+        function(event) {
+            history.pushState(null, null, 'GameTable.html');
+        });
+    </script>
+    <body onload="tableUpdater()">
+        
+        <div id="themesWrapper">
+           <div>Themes</div>
+           <img id="themeImg" src="../../Themes/theme0.png" onclick="themes()">
+           <img id="themeImg" src="../../Themes/theme1.png" onclick="themes()">
+       </div>
+        
+        <h3 id="owner">Table</h3>
+        <div id="Table"></div>   
+        <div id="menu"> 
+            <div>Bet Area</div>
+               <input type="text" id="input"><br><br>
+            <div>Chat Area</div>
+            <textarea id="posttext" maxlength=40 ></textarea>
+        </div>  
+        <script>
+            chat();
+        </script>
+    </body>
+</html>

@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<data>
+    <time>0</time>
+    <start>BlindSet</start>
+    <totalMoney>0</totalMoney>   
+    <roundCounter>1</roundCounter> 
+    <currentMove>none</currentMove>
+    <smallBlind>none</smallBlind>
+    <bigBlind>none</bigBlind>
+    <cardA>question</cardA>
+    <cardB>question</cardB>
+    <cardC>question</cardC>
+    <cardD>question</cardD>
+    <cardE>question</cardE>
+</data>

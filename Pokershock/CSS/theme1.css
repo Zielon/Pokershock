@@ -1,0 +1,28 @@
+body {
+    background-color: gray;
+    color: black;
+    text-align: center;
+    display: block;
+    font-family: Consolas, monaco, monospace;
+    font-size: 12px;
+    font-style: normal;
+    font-variant: normal;
+}
+
+#chatBox {
+    margin: auto;
+    overflow:auto;
+    text-align:center;
+    background: gray;
+    height:243px;
+    width:400px;
+    border:3px solid red;
+   
+}
+
+#activeTables{
+    border:1px solid red;
+    text-align:center;
+    overflow:auto;
+    background: gray;
+}

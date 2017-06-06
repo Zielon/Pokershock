@@ -1,0 +1,18 @@
+body {
+    background-color: gray;
+    color: black;
+    text-align: center;
+    display: block;
+    font-family: Consolas, monaco, monospace;
+    font-size: 12px;
+    font-style: normal;
+    font-variant: normal;
+}
+
+#chatWrapper {
+    background: gray;
+    height:133px;
+    width:799px;
+    border:1.5px solid red;
+    overflow:auto;
+}
