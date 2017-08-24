@@ -7,7 +7,7 @@ A player can simultaneously play on many different tables.
 Functionality:
 
 - Multiple *tables/rooms* for players
-- The scoring alghoritms
+- The scoring algorithm
 - The ranking
 - A chat for each *table/room*
 - A global chat for all players
